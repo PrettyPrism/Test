@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     }
     @Override
     public void onClick(View view) {
+        Log.i("message", "clicked");
         /*
         switch(view.getId()) {
             case R.id.tweet_button:
