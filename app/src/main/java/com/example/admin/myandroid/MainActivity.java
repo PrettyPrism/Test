@@ -150,11 +150,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
             sm.registerListener(this, s, SensorManager.SENSOR_DELAY_NORMAL);
         }
         boolean isNetworkEnabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        /*
         if (isNetworkEnabled) {
+            //noinspection ResourceType
             lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,location_min_time,location_min_distance,this);
         }
-        */
     }
 
     @Override
