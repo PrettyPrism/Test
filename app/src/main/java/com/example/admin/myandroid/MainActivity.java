@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     boolean vibra = false;
     int location_min_time = 0, location_min_distance = 1;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,20 +125,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     @Override
     public void onClick(View view) {
         Log.i("message", "clicked");
-        /*
-        switch(view.getId()) {
-            case R.id.tweet_button:
-            {
-                final TextView tweet = (TextView)findViewById(R.id.tweetText);
-                Intent intent = new Intent(MainActivity.this, TwitterService.class);
-                intent.putExtra(TwitterService.EXTRA_isTweet, true);
-                intent.putExtra(TwitterService.EXTRA_tweet, tweet.getText().toString());
-                startService(intent);
-                tweet.setText("");
-                break;
-            }
-        }
-        */
     }
     @Override
     protected void onResume() {
@@ -161,8 +146,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     public void onLocationChanged(Location location) {
         String m = "";
         //位置情報の表示
-        m += "経度 : "+location.getLongitude()+"\n";//緯度の取得
-        m += "緯度 : "+location.getLatitude()+"\n";//経度の取得
+        m += "経度 : "+location.getLongitude()+"\n";//経度の取得
+        m += "緯度 : "+location.getLatitude()+"\n";//緯度の取得
         locate.setText(m);
     }
 
@@ -222,15 +207,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
             vibra = true;
             Intent intent = new Intent(MainActivity.this, TwitterService.class);
             intent.putExtra(TwitterService.EXTRA_isTweet, true);
-//            intent.putExtra(TwitterService.EXTRA_tweet, "10秒");
+            intent.putExtra(TwitterService.EXTRA_tweet, "10秒");
 //            intent.putExtra(TwitterService.EXTRA_tweet, "10秒も放置された");
-            intent.putExtra(TwitterService.EXTRA_tweet, "10秒間も音沙汰無し");
+//            intent.putExtra(TwitterService.EXTRA_tweet, "10秒間も音沙汰無し");
             startService(intent);
         }
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
-
     }
 }
