@@ -44,21 +44,21 @@ import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterService extends IntentService {
 
-    public final static String EXTRA_CONSUMER_KEY = "consumer_key";
-    public final static String EXTRA_CONSUMER_SECRET = "consumer_secret";
-    public final static String EXTRA_ACCESS_TOKEN = "access_token";
-    public final static String EXTRA_ACCESS_TOKEN_SECRET = "access_token_secret";
-    public static String EXTRA_isTweet = "extra_isTweet";
-    public static String EXTRA_tweet = "extra_tweet";
+    final static String EXTRA_CONSUMER_KEY = "consumer_key";
+    final static String EXTRA_CONSUMER_SECRET = "consumer_secret";
+    final static String EXTRA_ACCESS_TOKEN = "access_token";
+    final static String EXTRA_ACCESS_TOKEN_SECRET = "access_token_secret";
+    final static String EXTRA_isTweet = "extra_isTweet";
+    final static String EXTRA_tweet = "extra_tweet";
 
-    ResponseList<Status> myTweets;
+    private ResponseList<Status> myTweets;
 
-    static Twitter twitterService = null;
-    User myUser;
-    SharedPreferences pref;
-    SharedPreferences.Editor editor;
-    long ownerId;
-    ArrayList<Long> friendId = new ArrayList<Long>();
+    private Twitter twitterService = null;
+    private User myUser;
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
+    private long ownerId;
+    private ArrayList<Long> friendId = new ArrayList<Long>();
     Calendar now;
 
     public TwitterService(String name) {
@@ -127,12 +127,13 @@ public class TwitterService extends IntentService {
                     Log.i("message", tweet+" is already tweeted");
                 }
             } catch(Exception e) {
+                Log.i("error", e.getMessage());
             }
         }
     }
 
-    String[] hellotweets = {"おはよーおはよー", "おはよー", "おはモニ", "にゃんぱすー", "おはやっぷー", "おはようのかしこま！"};
-    String[] goodnighttweets = {"おやすみー", "おやすみなさーい", "おやすミルキィ", "おやすみのかしこま～", "ｸﾞﾝﾅｲ･･･"};
+    private String[] hellotweets = {"おはよーおはよー", "おはよー", "おはモニ", "にゃんぱすー", "おはやっぷー", "おはようのかしこま！"};
+    private String[] goodnighttweets = {"おやすみー", "おやすみなさーい", "おやすミルキィ", "おやすみのかしこま～", "ｸﾞﾝﾅｲ･･･"};
     class MyUserStreamAdapter extends UserStreamAdapter {
         public synchronized void onStatus(Status status) {
             String username = status.getUser().getScreenName();
@@ -185,6 +186,7 @@ public class TwitterService extends IntentService {
                 Log.i("message", tweet+" is already tweeted");
             }
         } catch(Exception e) {
+            Log.i("error", e.getMessage());
         }
     }
     void reply(Status status, String tweet) {
@@ -201,6 +203,7 @@ public class TwitterService extends IntentService {
                 Log.i("message", tweet+" is already tweeted");
             }
         } catch(Exception e) {
+            Log.i("error", e.getMessage());
         }
     }
     String dateToString(Date date) {
